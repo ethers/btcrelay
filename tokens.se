@@ -19,7 +19,7 @@ data feeVerifyTx
 #macro TOKEN_FACTORY: 0xfd5aee44be7195a704a86c18dfc0b65813486f7e
 macro TOKEN_ENDOWMENT: 2**200
 macro REWARD_PER_HEADER: 1000
-macro FEE_VERIFY_TX: 100000000000000000  # 0.1 ETH
+macro INIT_FEE_VERIFY_TX: 10000000000000000  # 0.01 ETH
 
 
 event rewardToken(blockHeight:indexed, rewardAddr:address)  # TODO: indexed or not?
@@ -29,6 +29,7 @@ event ethPayment()
 
 def initTokenContract(tokenFactoryAddr):
     if !self.tokenContract:  # can only be set once
+        self.feeVerifyTx = INIT_FEE_VERIFY_TX
         self.tokenContract = tokenFactoryAddr.createStandardToken(TOKEN_ENDOWMENT)
         return(self.tokenContract)
 
@@ -52,11 +53,11 @@ macro rewardForBlockHeader($blockHeight):
 
 
 macro m_adjustFee($feeFactor):
-    self.feeVerifyTx = $feeFactor
+    self.feeVerifyTx += self.feeVerifyTx * ((127-$feeFactor)/127/1024)  # use / for signed div
 
 
 macro chargeVerifyTx():
-    msg.value >= FEE_VERIFY_TX
+    msg.value >= self.feeVerifyTx
 
 
 # TODO tx.origin ?
