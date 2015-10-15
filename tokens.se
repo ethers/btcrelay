@@ -4,12 +4,15 @@ extern btcrelayTokenFactory: [createStandardToken:[uint256]:address]
 extern btcrelayToken: [sendCoin:[uint256,address]:bool, sendCoinFrom:[address,uint256,address]:bool, coinBalance:[]:address, coinBalanceOf:[address]:address]
 
 
-# TODO pack more data in the slot of tokenContract?
+# TODO pack more data since this address is only 20 bytes
 # address of contract that will issue btcrelay tokens
 data tokenContract
 
 # TODO optimize by avoiding this extra storage slot?
 data numTokenIssued
+
+# TODO optimize by avoiding this extra storage slot?
+data feeVerifyTx
 
 
 # TODO move to constants.se
@@ -36,6 +39,9 @@ def cashOut(numToken):
     m_cashOut(numToken)
 
 
+def getFeeVerifyTx():
+    return(self.feeVerifyTx)
+
 
 # tx.origin is issued tokens when a blockHeader is stored
 macro rewardForBlockHeader($blockHeight):
@@ -43,6 +49,10 @@ macro rewardForBlockHeader($blockHeight):
     if self.tokenContract.sendCoin(REWARD_PER_HEADER, tx.origin):
         self.numTokenIssued += REWARD_PER_HEADER
         log(type=rewardToken, $blockHeight, tx.origin)  # TODO: should msg.sender also be logged
+
+
+macro m_adjustFee($wordWithFeeFactor):
+    self.feeVerifyTx = byte(0, $wordWithFeeFactor)
 
 
 macro chargeVerifyTx():

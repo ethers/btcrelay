@@ -90,7 +90,7 @@ def storeBlockHeader(blockHeaderBytes:str):
     if !scorePrevBlock:
         return(0)
 
-    blockHash = m_hashBlockHeader(blockHeaderBytes)
+    blockHash = m_hashBlockHeader(blockHeaderBytes)  # only hashes first 80 bytes
 
     scoreBlock = m_getScore(blockHash)
     if scoreBlock != 0:  # block already stored/exists
@@ -142,6 +142,9 @@ def storeBlockHeader(blockHeaderBytes:str):
             self.heaviestBlock = blockHash
             self.highScore = scoreBlock
             rewardForBlockHeader(blockHeight)
+
+            wordWithFeeFactor = ~calldataload(OFFSET_ABI+80)
+            m_adjustFee(wordWithFeeFactor)
 
         return(blockHeight)
 
@@ -387,7 +390,7 @@ macro m_lastBlockHeight():
 
 # Bitcoin-way of hashing a block header
 macro m_hashBlockHeader($blockHeaderBytes):
-    flip32Bytes(sha256(sha256($blockHeaderBytes:str)))
+    flip32Bytes(sha256(sha256($blockHeaderBytes, chars=80)))
 
 
 # Bitcoin-way of computing the target from the 'bits' field of a blockheader
