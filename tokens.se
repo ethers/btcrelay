@@ -51,8 +51,8 @@ macro rewardForBlockHeader($blockHeight):
         log(type=rewardToken, $blockHeight, tx.origin)  # TODO: should msg.sender also be logged
 
 
-macro m_adjustFee($wordWithFeeFactor):
-    self.feeVerifyTx = byte(0, $wordWithFeeFactor)
+macro m_adjustFee($feeFactor):
+    self.feeVerifyTx = $feeFactor
 
 
 macro chargeVerifyTx():
