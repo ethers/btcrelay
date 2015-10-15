@@ -529,4 +529,4 @@ macro m_setScore($blockHash, $blockScore):
     self.block[$blockHash]._info = $word
 
 macro m_getScore($blockHash):
-    div(sload(ref(self.block[$blockHash]._info)) * BYTES_16, BYTES_16)
+    (BYTES_16 - 1) & self.block[$blockHash]._info
