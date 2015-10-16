@@ -23,8 +23,7 @@ TOKEN_ENDOWMENT = 2**200
 REWARD_PER_HEADER = 1000
 INIT_FEE_VERIFY_TX = 10000000000000000  # 0.01 ETH
 TOTAL_FEE_RELAY_TX = 0 + INIT_FEE_VERIFY_TX
-MAX_DELTA_INCREASE_FVTX = int(INIT_FEE_VERIFY_TX*127/127.0/1024.0)  # FVTX FEE_VERIFY_TX
-MAX_DELTA_DECREASE_FVTX = int(INIT_FEE_VERIFY_TX*-128/127.0/1024.0)
+MAX_DELTA_INCREASE_FVTX = 1/1024.0
 
 Account = namedtuple('Account', ['key', 'addr'])
 
@@ -155,6 +154,7 @@ class TestTokens(object):
         feeFactor = '81'
         nextHeader += feeFactor
         assert self.c.storeBlockHeader(nextHeader.decode('hex')) == 300024
+        # assert self.c.getFeeVerifyTx() == currFee + MIN
 
         expBalVerifier -= valSend
         expBalRelay += valSend
@@ -165,13 +165,13 @@ class TestTokens(object):
 
     def testFeeVerifyTxMaxDecrease(self):
         newFee = self.checkAdjustFeeVerifyTx('00')
-        assert newFee == INIT_FEE_VERIFY_TX + MAX_DELTA_DECREASE_FVTX
+        assert newFee == self.calcNextFee(0, INIT_FEE_VERIFY_TX)  # need to use calcNextFee for correct rounding
         self.s.revert(self.snapshot)
         assert self.checkAdjustFeeVerifyTx('') == newFee
 
     def testFeeVerifyTxMaxIncrease(self):
         feeUp = self.checkAdjustFeeVerifyTx('ff')
-        assert feeUp == INIT_FEE_VERIFY_TX + MAX_DELTA_INCREASE_FVTX
+        assert feeUp == INIT_FEE_VERIFY_TX * (1+MAX_DELTA_INCREASE_FVTX)
         self.s.revert(self.snapshot)
         feeDown = self.checkAdjustFeeVerifyTx('01')
         assert (feeUp + feeDown) / 2 == INIT_FEE_VERIFY_TX  # deltas in feeUp and feeDown are equal
@@ -210,8 +210,15 @@ class TestTokens(object):
     # in hex [0, 7f] is decrease [81-ff] is increase; hex80 no change
     # thus max fee decrease is slightly more than max fee increase
     def deltaFee(self, feeFactor, currFee):
+        if feeFactor not in range(256):
+            raise ValueError('feeFactor must be in range [0,255]')
         return int(currFee * ((feeFactor - 128)/127.0) / 1024.0)
 
+    # unable to simplify this and maintain the correct rounding
+    def calcNextFee(self, feeFactor, currFee):
+        if feeFactor not in range(256):
+            raise ValueError('feeFactor must be in range [0,255]')
+        return currFee + self.deltaFee(feeFactor, currFee)
 
     # based on test_btcrelay testStoreBlockHeader
     def testRewardOneBlock(self):
