@@ -145,10 +145,14 @@ class TestTokens(object):
         print('GAS: %s' % res['gas'])
         assert res['output'] == 300000
 
-        # expFee = INIT_FEE_VERIFY_TX * (1 + ((-128/127.0)/1024.0))  # max fee decrease is slightly more than max fee increase
-        expFee = INIT_FEE_VERIFY_TX + int(INIT_FEE_VERIFY_TX * (-128/127.0) / 1024.0)
+        expFee = INIT_FEE_VERIFY_TX + self.deltaFee(int(feeFactor, 16), INIT_FEE_VERIFY_TX)
         assert self.c.getFeeVerifyTx() == expFee
 
+
+    # feeFactor is in range [-128, 127]
+    # thus max fee decrease is slightly more than max fee increase
+    def deltaFee(self, feeFactor, currFee):
+        return int(currFee * ((127 - feeFactor)/127.0) / 1024.0)
 
 
     # based on test_btcrelay testStoreBlockHeader
