@@ -129,16 +129,29 @@ class TestTokens(object):
         assert self.s.block.get_balance(self.c.address) == ethPaid
 
 
-    # based on testRewardOneBlock
-    def testAdjustFee(self):
-        bal = self.xcoin.coinBalanceOf(self.c.address)
-        assert bal == TOKEN_ENDOWMENT
+    def testFeeVerifyTxMaxDecrease(self):
+        self.checkAdjustFeeVerifyTx('ff')
 
+    def testFeeVerifyTxMaxIncrease(self):
+        self.checkAdjustFeeVerifyTx('00')
+
+    def testFeeVerifyTxDecrease(self):
+        self.checkAdjustFeeVerifyTx('fe')
+
+    def testFeeVerifyTxNoDecrease(self):
+        self.checkAdjustFeeVerifyTx('7f')
+
+    def testFeeVerifyTxMinIncrease(self):
+        self.checkAdjustFeeVerifyTx('80')
+
+    def testFeeVerifyTxMinDecrease(self):
+        self.checkAdjustFeeVerifyTx('7e')
+
+    # based on testRewardOneBlock
+    def checkAdjustFeeVerifyTx(self, feeFactor):
         block300K = 0x000000000000000008360c20a2ceff91cc8c4f357932377f48659b37bb86c759
         self.c.setInitialParent(block300K, 299999, 1)
-
         blockHeaderStr = '0200000059c786bb379b65487f373279354f8ccc91ffcea2200c36080000000000000000dd9d7757a736fec629ab0ed0f602ba23c77afe7edec85a7026f641fd90bcf8f658ca8154747b1b1894fc742f'
-        feeFactor = 'ff'  # equivalent to factor of (-128/127)/1024
         blockHeaderStr += feeFactor
         bhBytes = blockHeaderStr.decode('hex')
         res = self.c.storeBlockHeader(bhBytes, profiling=True, sender=tester.k1)
