@@ -133,19 +133,22 @@ class TestTokens(object):
         self.checkAdjustFeeVerifyTx('ff')
 
     def testFeeVerifyTxMaxIncrease(self):
-        self.checkAdjustFeeVerifyTx('00')
-
-    def testFeeVerifyTxDecrease(self):
-        self.checkAdjustFeeVerifyTx('fe')
+        feeUp = self.checkAdjustFeeVerifyTx('00')
+        self.s.revert(self.snapshot)
+        feeDown = self.checkAdjustFeeVerifyTx('fe')
+        assert (feeUp + feeDown) / 2 == INIT_FEE_VERIFY_TX  # deltas in feeUp and feeDown are equal
 
     def testFeeVerifyTxNoDecrease(self):
-        self.checkAdjustFeeVerifyTx('7f')
-
-    def testFeeVerifyTxMinIncrease(self):
-        self.checkAdjustFeeVerifyTx('80')
+        newFee = self.checkAdjustFeeVerifyTx('7f')
+        assert newFee == INIT_FEE_VERIFY_TX
 
     def testFeeVerifyTxMinDecrease(self):
-        self.checkAdjustFeeVerifyTx('7e')
+        newFee = self.checkAdjustFeeVerifyTx('80')
+        assert newFee == INIT_FEE_VERIFY_TX - 76894685039  # int(INIT_FEE_VERIFY_TX/127.0/1024.0)
+
+    def testFeeVerifyTxMinIncrease(self):
+        newFee = self.checkAdjustFeeVerifyTx('7e')
+        assert newFee == INIT_FEE_VERIFY_TX + 76894685039  # int(INIT_FEE_VERIFY_TX/127.0/1024.0)
 
     # based on testRewardOneBlock
     def checkAdjustFeeVerifyTx(self, feeFactor):
@@ -159,7 +162,9 @@ class TestTokens(object):
         assert res['output'] == 300000
 
         expFee = INIT_FEE_VERIFY_TX + self.deltaFee(int(feeFactor, 16), INIT_FEE_VERIFY_TX)
-        assert self.c.getFeeVerifyTx() == expFee
+        newFee = self.c.getFeeVerifyTx()
+        assert newFee == expFee
+        return newFee
 
 
     # feeFactor is in range [-128, 127]
