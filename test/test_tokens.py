@@ -126,19 +126,24 @@ class TestTokens(object):
         [txHash, txIndex, siblings, txBlockHash] = makeMerkleProof(header, hashes, 1)
 
         currFee = self.c.getFeeVerifyTx()
+
+        expBalVerifier = self.s.block.get_balance(verifier.addr)
+        expBalRelay = self.s.block.get_balance(self.c.address)
+
         valSend = currFee - 1
-        balRelay = self.s.block.get_balance(self.c.address)
+        expBalVerifier -= valSend
+        expBalRelay += valSend
         assert 0 == self.c.verifyTx(txHash, txIndex, siblings, txBlockHash, sender=verifier.key, value=valSend)
-        assert self.s.block.get_balance(self.c.address) == valSend
-        balRelay += valSend
+        assert self.s.block.get_balance(verifier.addr) == expBalVerifier
+        assert self.s.block.get_balance(self.c.address) == expBalRelay
 
         valSend = currFee
-        balVerifier = self.s.block.get_balance(verifier.addr)
+        expBalVerifier -= valSend
+        expBalRelay += valSend
         assert 1 == self.c.verifyTx(txHash, txIndex, siblings, txBlockHash, sender=verifier.key, value=valSend)
 
-        balRelay += valSend
-        assert self.s.block.get_balance(verifier.addr) == balVerifier - valSend
-        assert self.s.block.get_balance(self.c.address) == balRelay
+        assert self.s.block.get_balance(verifier.addr) == expBalVerifier
+        assert self.s.block.get_balance(self.c.address) == expBalRelay
 
 
     def testFeeVerifyTxMaxDecrease(self):
