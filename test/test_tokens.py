@@ -130,24 +130,27 @@ class TestTokens(object):
 
 
     def testFeeVerifyTxMaxDecrease(self):
-        self.checkAdjustFeeVerifyTx('ff')
+        self.checkAdjustFeeVerifyTx('00')
 
     def testFeeVerifyTxMaxIncrease(self):
-        feeUp = self.checkAdjustFeeVerifyTx('00')
-        self.s.revert(self.snapshot)
-        feeDown = self.checkAdjustFeeVerifyTx('fe')
-        assert (feeUp + feeDown) / 2 == INIT_FEE_VERIFY_TX  # deltas in feeUp and feeDown are equal
+        self.checkAdjustFeeVerifyTx('ff')
+        # self.s.revert(self.snapshot)
+        # feeDown = self.checkAdjustFeeVerifyTx('fe')
+        # assert (feeUp + feeDown) / 2 == INIT_FEE_VERIFY_TX  # deltas in feeUp and feeDown are equal
 
-    def testFeeVerifyTxNoDecrease(self):
-        newFee = self.checkAdjustFeeVerifyTx('7f')
-        assert newFee == INIT_FEE_VERIFY_TX
+    # def testFeeVerifyTxNoDecrease(self):
+    #     # newFee = self.checkAdjustFeeVerifyTx('7f')
+    #     # assert newFee == INIT_FEE_VERIFY_TX
+    #     # self.s.revert(self.snapshot)
+    #     # assert self.checkAdjustFeeVerifyTx('') == newFee
+    #     assert self.checkAdjustFeeVerifyTx('') == INIT_FEE_VERIFY_TX
 
     def testFeeVerifyTxMinDecrease(self):
-        newFee = self.checkAdjustFeeVerifyTx('80')
+        newFee = self.checkAdjustFeeVerifyTx('7f')
         assert newFee == INIT_FEE_VERIFY_TX - 76894685039  # int(INIT_FEE_VERIFY_TX/127.0/1024.0)
 
     def testFeeVerifyTxMinIncrease(self):
-        newFee = self.checkAdjustFeeVerifyTx('7e')
+        newFee = self.checkAdjustFeeVerifyTx('81')
         assert newFee == INIT_FEE_VERIFY_TX + 76894685039  # int(INIT_FEE_VERIFY_TX/127.0/1024.0)
 
     # based on testRewardOneBlock
@@ -161,16 +164,17 @@ class TestTokens(object):
         print('GAS: %s' % res['gas'])
         assert res['output'] == 300000
 
-        expFee = INIT_FEE_VERIFY_TX + self.deltaFee(int(feeFactor, 16), INIT_FEE_VERIFY_TX)
+        # '0'+feeFactor trick per http://stackoverflow.com/a/31679342
+        expFee = INIT_FEE_VERIFY_TX + self.deltaFee(int('0'+feeFactor, 16), INIT_FEE_VERIFY_TX)
         newFee = self.c.getFeeVerifyTx()
         assert newFee == expFee
         return newFee
 
 
-    # feeFactor is in range [-128, 127]
+    # feeFactor is in range [0, 255]
     # thus max fee decrease is slightly more than max fee increase
     def deltaFee(self, feeFactor, currFee):
-        return int(currFee * ((127 - feeFactor)/127.0) / 1024.0)
+        return int(currFee * ((feeFactor - 128)/127.0) / 1024.0)
 
 
     # based on test_btcrelay testStoreBlockHeader
