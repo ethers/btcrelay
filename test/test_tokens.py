@@ -130,6 +130,7 @@ class TestTokens(object):
         expBalVerifier = self.s.block.get_balance(verifier.addr)
         expBalRelay = self.s.block.get_balance(self.c.address)
 
+        # insufficient payment does not allow verifyTx (and no refund)
         valSend = currFee - 1
         expBalVerifier -= valSend
         expBalRelay += valSend
@@ -137,11 +138,27 @@ class TestTokens(object):
         assert self.s.block.get_balance(verifier.addr) == expBalVerifier
         assert self.s.block.get_balance(self.c.address) == expBalRelay
 
+        # sufficient payment
         valSend = currFee
         expBalVerifier -= valSend
         expBalRelay += valSend
         assert 1 == self.c.verifyTx(txHash, txIndex, siblings, txBlockHash, sender=verifier.key, value=valSend)
+        assert self.s.block.get_balance(verifier.addr) == expBalVerifier
+        assert self.s.block.get_balance(self.c.address) == expBalRelay
 
+        #
+        # add block and raise fee by minimum amount; valSend should now be
+        # insufficient and not allow verifyTx
+        #
+        assert self.c.getBlockHash(self.c.getLastBlockHeight()) == 0x00000000000000003c8755a720049ced2bd4d597b57d38fd02dcd042925decef
+        nextHeader = '02000000efec5d9242d0dc02fd387db597d5d42bed9c0420a755873c00000000000000003761f36923e9c2b5950fbb291b8a4a644dfcde1c519589876bc6d236b8e22444c0ec6d536c890019ca5900c3'
+        feeFactor = '81'
+        nextHeader += feeFactor
+        assert self.c.storeBlockHeader(nextHeader.decode('hex')) == 300024
+
+        expBalVerifier -= valSend
+        expBalRelay += valSend
+        assert 0 == self.c.verifyTx(txHash, txIndex, siblings, txBlockHash, sender=verifier.key, value=valSend)
         assert self.s.block.get_balance(verifier.addr) == expBalVerifier
         assert self.s.block.get_balance(self.c.address) == expBalRelay
 
@@ -190,7 +207,7 @@ class TestTokens(object):
 
 
     # feeFactor is in range [0, 255]
-    # [0, 127] is decrease [129-255] is increase
+    # in hex [0, 7f] is decrease [81-ff] is increase; hex80 no change
     # thus max fee decrease is slightly more than max fee increase
     def deltaFee(self, feeFactor, currFee):
         return int(currFee * ((feeFactor - 128)/127.0) / 1024.0)
