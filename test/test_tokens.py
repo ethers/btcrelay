@@ -130,20 +130,19 @@ class TestTokens(object):
 
 
     def testFeeVerifyTxMaxDecrease(self):
-        self.checkAdjustFeeVerifyTx('00')
+        newFee = self.checkAdjustFeeVerifyTx('00')
+        self.s.revert(self.snapshot)
+        assert self.checkAdjustFeeVerifyTx('') == newFee
 
     def testFeeVerifyTxMaxIncrease(self):
-        self.checkAdjustFeeVerifyTx('ff')
-        # self.s.revert(self.snapshot)
-        # feeDown = self.checkAdjustFeeVerifyTx('fe')
-        # assert (feeUp + feeDown) / 2 == INIT_FEE_VERIFY_TX  # deltas in feeUp and feeDown are equal
+        feeUp = self.checkAdjustFeeVerifyTx('ff')
+        self.s.revert(self.snapshot)
+        feeDown = self.checkAdjustFeeVerifyTx('01')
+        assert (feeUp + feeDown) / 2 == INIT_FEE_VERIFY_TX  # deltas in feeUp and feeDown are equal
 
-    # def testFeeVerifyTxNoDecrease(self):
-    #     # newFee = self.checkAdjustFeeVerifyTx('7f')
-    #     # assert newFee == INIT_FEE_VERIFY_TX
-    #     # self.s.revert(self.snapshot)
-    #     # assert self.checkAdjustFeeVerifyTx('') == newFee
-    #     assert self.checkAdjustFeeVerifyTx('') == INIT_FEE_VERIFY_TX
+    def testFeeVerifyTxNoDecrease(self):
+        newFee = self.checkAdjustFeeVerifyTx('80')
+        assert newFee == INIT_FEE_VERIFY_TX
 
     def testFeeVerifyTxMinDecrease(self):
         newFee = self.checkAdjustFeeVerifyTx('7f')
@@ -172,6 +171,7 @@ class TestTokens(object):
 
 
     # feeFactor is in range [0, 255]
+    # [0, 127] is decrease [129-255] is increase
     # thus max fee decrease is slightly more than max fee increase
     def deltaFee(self, feeFactor, currFee):
         return int(currFee * ((feeFactor - 128)/127.0) / 1024.0)
