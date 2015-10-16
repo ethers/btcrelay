@@ -116,10 +116,9 @@ class TestTokens(object):
     def testInsufficientPayVerifyTx(self):
         numHeader = 24  # minimum is 24 (block 300017 plus 6 confirmations)
         # headers are stored by k1, but k0 is who makes the verifyTx call
-        keySender = tester.k0
-        addrSender = tester.a0
+        verifier = Account(tester.k0, tester.a0)
         submitter = Account(tester.k1, tester.a1)
-        self.storeHeadersFrom300K(numHeader, tester.k1, tester.a1)
+        self.storeHeadersFrom300K(numHeader, submitter.key, submitter.addr)
 
         # block 300017
         header = {'nonce': 2022856018, 'hash': u'000000000000000032c0ae55f7f52b179a6346bb0d981af55394a3b9cdc556ea', 'timestamp': 1399708353, 'merkle_root': u'2fcb4296ba8d2cc5748a9310bac31d2652389c4d70014ccf742d0e4409a612c9', 'version': 2, 'prevhash': u'00000000000000002ec86a542e2cefe62dcec8ac2317a1dc92fbb094f9d30941', 'bits': 419465580}
@@ -129,16 +128,16 @@ class TestTokens(object):
         currFee = self.c.getFeeVerifyTx()
         valSend = currFee - 1
         balRelay = self.s.block.get_balance(self.c.address)
-        assert 0 == self.c.verifyTx(txHash, txIndex, siblings, txBlockHash, sender=keySender, value=valSend)
+        assert 0 == self.c.verifyTx(txHash, txIndex, siblings, txBlockHash, sender=verifier.key, value=valSend)
         assert self.s.block.get_balance(self.c.address) == valSend
         balRelay += valSend
 
         valSend = currFee
-        balVerifier = self.s.block.get_balance(addrSender)
-        assert 1 == self.c.verifyTx(txHash, txIndex, siblings, txBlockHash, sender=keySender, value=valSend)
+        balVerifier = self.s.block.get_balance(verifier.addr)
+        assert 1 == self.c.verifyTx(txHash, txIndex, siblings, txBlockHash, sender=verifier.key, value=valSend)
 
         balRelay += valSend
-        assert self.s.block.get_balance(addrSender) == balVerifier - valSend
+        assert self.s.block.get_balance(verifier.addr) == balVerifier - valSend
         assert self.s.block.get_balance(self.c.address) == balRelay
 
 
