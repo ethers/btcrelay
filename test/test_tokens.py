@@ -127,6 +127,7 @@ class TestTokens(object):
         [txHash, txIndex, siblings, txBlockHash] = makeMerkleProof(header, hashes, 1)
 
         currFee = self.c.getFeeVerifyTx()
+        h24fee = currFee
 
         expBalVerifier = self.s.block.get_balance(verifier.addr)
         expBalRelay = self.s.block.get_balance(self.c.address)
@@ -156,11 +157,29 @@ class TestTokens(object):
         feeFactor = '81'
         nextHeader += feeFactor
         assert self.c.storeBlockHeader(nextHeader.decode('hex')) == 300024
-        # assert self.c.getFeeVerifyTx() == currFee + MIN
+        assert self.c.getFeeVerifyTx() == currFee + int(currFee*MIN_DELTA_FVTX)
+        currFee += int(currFee*MIN_DELTA_FVTX)
 
+        # paying old fee is insufficient now
         expBalVerifier -= valSend
         expBalRelay += valSend
         assert 0 == self.c.verifyTx(txHash, txIndex, siblings, txBlockHash, sender=verifier.key, value=valSend)
+        assert self.s.block.get_balance(verifier.addr) == expBalVerifier
+        assert self.s.block.get_balance(self.c.address) == expBalRelay
+
+        valSend = currFee - 1
+        expBalVerifier -= valSend
+        expBalRelay += valSend
+        assert 0 == self.c.verifyTx(txHash, txIndex, siblings, txBlockHash, sender=verifier.key, value=valSend)
+        assert self.s.block.get_balance(verifier.addr) == expBalVerifier
+        assert self.s.block.get_balance(self.c.address) == expBalRelay
+
+        # send the exact fee required
+        valSend = h24fee + int(h24fee*MIN_DELTA_FVTX)
+        assert valSend == currFee
+        expBalVerifier -= valSend
+        expBalRelay += valSend
+        assert 1 == self.c.verifyTx(txHash, txIndex, siblings, txBlockHash, sender=verifier.key, value=valSend)
         assert self.s.block.get_balance(verifier.addr) == expBalVerifier
         assert self.s.block.get_balance(self.c.address) == expBalRelay
 
@@ -216,11 +235,6 @@ class TestTokens(object):
             raise ValueError('feeFactor must be in range [0,255]')
         return int(currFee * ((feeFactor - 128)/128.0) / 1024.0)
 
-    # unable to simplify this and maintain the correct rounding
-    def calcNextFee(self, feeFactor, currFee):
-        if feeFactor not in range(256):
-            raise ValueError('feeFactor must be in range [0,255]')
-        return currFee + self.deltaFee(feeFactor, currFee)
 
     # based on test_btcrelay testStoreBlockHeader
     def testRewardOneBlock(self):
