@@ -85,7 +85,7 @@
   }
 
   function updateBlockr() {
-    $.getJSON('http://btc.blockr.io/api/v1/block/info/last', function(data) {
+    $.getJSON('//btc.blockr.io/api/v1/block/info/last', function(data) {
       $('#blockrBlockHeight').text(data.data.nb);
     });
   }

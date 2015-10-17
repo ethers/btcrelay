@@ -60,7 +60,7 @@
         $('#txHexText').val(gRawTx);
 
         var blockNum = data.data.tx.blockhash;
-        var blockInfoUrl = "http://btc.blockr.io/api/v1/block/raw/"+blockNum;
+        var blockInfoUrl = "//btc.blockr.io/api/v1/block/raw/"+blockNum;
         $.getJSON(blockInfoUrl, function(res) {
             gBlockHashOfTx = res.data.hash;
             $('#txBlockHash').text(gBlockHashOfTx)
