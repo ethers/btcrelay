@@ -533,6 +533,9 @@ class TestTokens(object):
 
         assert self.c.getFeeVerifyTx() == feeVTX
 
+        approxFee = INIT_FEE_VERIFY_TX*(1+MAX_DECREASE_FVTX)**numHeader
+        assert abs(self.c.getFeeVerifyTx() - approxFee) < 10  # within 10wei is quite accurate
+
         # duration = datetime.combine(date.today(), endTime) - datetime.combine(date.today(), startTime)
         # print("********** duration: "+str(duration)+" ********** start:"+str(startTime)+" end:"+str(endTime))
 
