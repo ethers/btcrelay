@@ -53,7 +53,8 @@ macro rewardForBlockHeader($blockHeight):
 
 
 macro m_adjustFee($feeFactor):
-    self.feeVerifyTx += self.feeVerifyTx * ($feeFactor - 128) / 130048  # use / for signed div
+    # 131072 is from 128*1024
+    self.feeVerifyTx += self.feeVerifyTx * ($feeFactor - 128) / 131072  # use / for signed div
 
 
 macro chargeVerifyTx():

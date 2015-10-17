@@ -23,7 +23,9 @@ TOKEN_ENDOWMENT = 2**200
 REWARD_PER_HEADER = 1000
 INIT_FEE_VERIFY_TX = 10000000000000000  # 0.01 ETH
 TOTAL_FEE_RELAY_TX = 0 + INIT_FEE_VERIFY_TX
-MAX_DELTA_INCREASE_FVTX = 1/1024.0
+MAX_DECREASE_FVTX = -1/1024.0
+MAX_INCREASE_FVTX = 127/128.0/1024
+MIN_DELTA_FVTX = 1/128.0/1024
 
 Account = namedtuple('Account', ['key', 'addr'])
 
@@ -165,13 +167,13 @@ class TestTokens(object):
 
     def testFeeVerifyTxMaxDecrease(self):
         newFee = self.checkAdjustFeeVerifyTx('00')
-        assert newFee == self.calcNextFee(0, INIT_FEE_VERIFY_TX)  # need to use calcNextFee for correct rounding
+        assert newFee == INIT_FEE_VERIFY_TX * (1+MAX_DECREASE_FVTX)
         self.s.revert(self.snapshot)
         assert self.checkAdjustFeeVerifyTx('') == newFee
 
     def testFeeVerifyTxMaxIncrease(self):
         feeUp = self.checkAdjustFeeVerifyTx('ff')
-        assert feeUp == INIT_FEE_VERIFY_TX * (1+MAX_DELTA_INCREASE_FVTX)
+        assert feeUp == INIT_FEE_VERIFY_TX + int(INIT_FEE_VERIFY_TX * MAX_INCREASE_FVTX)
         self.s.revert(self.snapshot)
         feeDown = self.checkAdjustFeeVerifyTx('01')
         assert (feeUp + feeDown) / 2 == INIT_FEE_VERIFY_TX  # deltas in feeUp and feeDown are equal
@@ -182,11 +184,11 @@ class TestTokens(object):
 
     def testFeeVerifyTxMinDecrease(self):
         newFee = self.checkAdjustFeeVerifyTx('7f')
-        assert newFee == INIT_FEE_VERIFY_TX - 76894685039  # int(INIT_FEE_VERIFY_TX/127.0/1024.0)
+        assert newFee == INIT_FEE_VERIFY_TX + int(INIT_FEE_VERIFY_TX * -MIN_DELTA_FVTX)
 
     def testFeeVerifyTxMinIncrease(self):
         newFee = self.checkAdjustFeeVerifyTx('81')
-        assert newFee == INIT_FEE_VERIFY_TX + 76894685039  # int(INIT_FEE_VERIFY_TX/127.0/1024.0)
+        assert newFee == INIT_FEE_VERIFY_TX + int(INIT_FEE_VERIFY_TX * MIN_DELTA_FVTX)
 
     # based on testRewardOneBlock
     def checkAdjustFeeVerifyTx(self, feeFactor):
@@ -212,7 +214,7 @@ class TestTokens(object):
     def deltaFee(self, feeFactor, currFee):
         if feeFactor not in range(256):
             raise ValueError('feeFactor must be in range [0,255]')
-        return int(currFee * ((feeFactor - 128)/127.0) / 1024.0)
+        return int(currFee * ((feeFactor - 128)/128.0) / 1024.0)
 
     # unable to simplify this and maintain the correct rounding
     def calcNextFee(self, feeFactor, currFee):
@@ -507,7 +509,7 @@ class TestTokens(object):
                 assert self.xcoin.coinBalanceOf(self.c.address) == TOKEN_ENDOWMENT - expCoinsOfSender
 
                 # http://stackoverflow.com/questions/19919387/in-python-what-is-a-good-way-to-round-towards-zero-in-integer-division
-                feeVTX += int((feeVTX * -128.0) / (127*1024))
+                feeVTX += int((feeVTX * -128.0) / (128*1024))
 
                 if i==numHeader:
                     break
