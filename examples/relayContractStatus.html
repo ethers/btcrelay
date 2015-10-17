@@ -50,6 +50,9 @@
     var ethTotal = web3.fromWei(web3.eth.getBalance(relayAddr), 'ether');
     $('#ethTotal').text(ethTotal);
 
+    var feeVerifyTx = web3.fromWei(contract.getFeeVerifyTx.call().toString(), 'ether');
+    $('#feeVerifyTx').text(feeVerifyTx);
+
     var userAddr = web3.eth.coinbase;  // assumption
     $('#userAddr').text(userAddr);
 
@@ -130,6 +133,10 @@
 
     <div>
       <h3>btcrelay collected ETH: <strong id="ethTotal"></strong></h3>
+      <h3>Current fee ETH: <strong id="feeVerifyTx"></strong></h3>
+    </div>
+    <hr/>
+    <div>
       <h3>Your address: <strong id="userAddr"></strong></h3>
       <h3>Your XBR balance: <strong id="userXBR"></strong></h3>
     </div>
