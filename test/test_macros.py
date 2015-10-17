@@ -45,9 +45,6 @@ class TestMacros(object):
         assert res['output'] == 300000
 
         blockHash = self.c.getBlockchainHead()
-        res = self.c.getBlockHeader(blockHash, profiling=True)
-        print('GAS: %s' % res['gas'])
-        assert res['output'] == bhBytes
 
         assert self.c.funcPrevBlock(blockHash) == block300K
         assert self.c.funcGetTimestamp(blockHash) == 1417792088

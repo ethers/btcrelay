@@ -282,12 +282,6 @@ def within6Confirms(txBlockHash):
     return(0)
 
 
-# TODO: should this charge fee?  what about other APIs?
-# getBlockHeaders costs around 23K gas
-def getBlockHeader(blockHash):
-    return(load(self.block[blockHash]._blockHeader[0], chars=80):str)
-
-
 # TODO is an API like getInitialParent() needed? it could be obtained using
 # web3.eth.getStorageAt using index 0x4000000000001
 

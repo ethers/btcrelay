@@ -76,17 +76,6 @@ Returns `int256`
 
 ----
 
-##### getBlockHeader(blockHash)
-
-Get the 80 byte block header for a given `blockHash`.
-
-* `blockHash` - hash of the block as `int256`
-
-Returns `bytes`
-* block header, always as 80 bytes (all zeros if header does not exist)
-
-----
-
 ##### getBlockHash(blockHeight)
 
 Get the block hash for a given `blockHeight`.
