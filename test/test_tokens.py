@@ -14,15 +14,20 @@ disablePyethLogging()
 
 
 # from contracts.json via Truffle
-TOKEN_FACTORY_EVM = '60606040526110f6806100136000396000f30060606040526000357c01000000000000000000000000000000000000000000000000000000009004806305215b2f1461004f5780635f8dead31461008c578063dc3f65d3146100cf5761004d565b005b610060600480359060200150610231565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6100a3600480359060200180359060200150610124565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6100da600450610175565b60405180806020018281038252838181518152602001915080519060200190602002808383829060006004602084601f0104600302600f01f1509050019250505060405180910390f35b60006000506020528160005260406000206000508181548110156100025790600052602060002090016000915091509054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6020604051908101604052806000815260200150600060005060003373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005080548060200260200160405190810160405280929190818152602001828054801561022257602002820191906000526020600020905b8160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16815260200190600101908083116101ee575b5050505050905061022e565b90565b600060006000600084604051610c8d8061046983390180828152602001915050604051809103906000f092508291508173ffffffffffffffffffffffffffffffffffffffff1663c86a90fe8633604051837c0100000000000000000000000000000000000000000000000000000000028152600401808381526020018273ffffffffffffffffffffffffffffffffffffffff168152602001925050506020604051808303816000876161da5a03f1156100025750505060405151506001600060005060003373ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000508181540191508181548183558181151161036957818360005260206000209182019101610368919061034a565b80821115610364576000818150600090555060010161034a565b5090565b5b505050905082600060005060003373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060018303815481101561000257906000526020600020900160006101000a81548173ffffffffffffffffffffffffffffffffffffffff0219169083021790555080600060005060003373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005081815481835581811511610454578183600052602060002091820191016104539190610435565b8082111561044f5760008181506000905550600101610435565b5090565b5b50505050829350610460565b50505091905056006060604052604051602080610c8d8339016040526060805190602001505b80600060005060003373ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600050819055505b50610c2b806100626000396000f300606060405236156100b6576000357c0100000000000000000000000000000000000000000000000000000000900480631fa03a2b146100b857806321af4feb146100e557806327e235e314610112578063673448dd1461013957806367eae67214610160578063930b7a2314610193578063bbd39ac0146101ac578063c86a90fe146101d3578063d26c8a8a14610200578063daea85c514610221578063f4b1604514610234578063fbf1f78a14610261576100b6565b005b6100cf600480359060200180359060200150610ace565b6040518082815260200191505060405180910390f35b6100fc600480359060200180359060200150610c00565b6040518082815260200191505060405180910390f35b610123600480359060200150610bb0565b6040518082815260200191505060405180910390f35b61014a6004803590602001506109ed565b6040518082815260200191505060405180910390f35b61017d6004803590602001803590602001803590602001506103a8565b6040518082815260200191505060405180910390f35b6101aa600480359060200180359060200150610789565b005b6101bd600480359060200150610674565b6040518082815260200191505060405180910390f35b6101ea600480359060200180359060200150610274565b6040518082815260200191505060405180910390f35b61020b600450610638565b6040518082815260200191505060405180910390f35b6102326004803590602001506106b2565b005b61024b600480359060200180359060200150610bcb565b6040518082815260200191505060405180910390f35b610272600480359060200150610851565b005b600082600060005060003373ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600050541015156103985782600060005060003373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008282825054039250508190555082600060005060008473ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000828282505401925050819055508173ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167f16cdf1707799c6655baac6e210f52b94b7cec08adcaf9ede7dfe8649da926146856040518082815260200191505060405180910390a3600190506103a2566103a1565b600090506103a2565b5b92915050565b6000600083600060005060008773ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600050541015156106265760009050600160005060008673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060003373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff161561045c57600190508050610525565b600260005060008673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060003373ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000505484111515610524576001905080506000600260005060008773ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060003373ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600050819055505b5b60018114156106185783600060005060008773ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008282825054039250508190555083600060005060008573ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000828282505401925050819055508273ffffffffffffffffffffffffffffffffffffffff168573ffffffffffffffffffffffffffffffffffffffff167f16cdf1707799c6655baac6e210f52b94b7cec08adcaf9ede7dfe8649da926146866040518082815260200191505060405180910390a36001915061063056610621565b60009150610630565b61062f565b60009150610630565b5b509392505050565b6000600060005060003373ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600050549050610671565b90565b6000600060005060008373ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000505490506106ad565b919050565b6001600160005060003373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060008373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908302179055508073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167f0e40f4b0b06b7d270eb92aed48caf256e6bbe4f83c5492e7433958cf5566192060016040518082815260200191505060405180910390a35b50565b80600260005060003373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060008473ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600050819055508173ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167fcc92c05edef6bc5dcdfab43862409620fd81888eec1be99935f19375c4ef704e836040518082815260200191505060405180910390a35b5050565b6000600160005060003373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060008373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908302179055506000600260005060003373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060008373ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600050819055508073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167f0e40f4b0b06b7d270eb92aed48caf256e6bbe4f83c5492e7433958cf5566192060006040518082815260200191505060405180910390a38073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167fcc92c05edef6bc5dcdfab43862409620fd81888eec1be99935f19375c4ef704e60006040518082815260200191505060405180910390a35b50565b60006001600160005060003373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060008473ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff161480610aba57506000600260005060003373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060008473ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005054115b15610ac85760019050610ac9565b5b919050565b60006001600160005060008573ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060008473ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff161480610b9b57506000600260005060008573ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060008473ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005054115b15610ba95760019050610baa565b5b92915050565b60006000506020528060005260406000206000915090505481565b60016000506020528160005260406000206000506020528060005260406000206000915091509054906101000a900460ff1681565b600260005060205281600052604060002060005060205280600052604060002060009150915050548156'
+TOKEN_FACTORY_EVM = '6060604052610f38806100126000396000f360606040526000357c01000000000000000000000000000000000000000000000000000000009004806305215b2f1461004f5780635f8dead314610091578063dc3f65d3146100dc5761004d565b005b6100656004808035906020019091905050610241565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6100b06004808035906020019091908035906020019091905050610133565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6100e96004805050610185565b60405180806020018281038252838181518152602001915080519060200190602002808383829060006004602084601f0104600302600f01f1509050019250505060405180910390f35b600060005060205281600052604060002060005081815481101561000257906000526020600020900160005b915091509054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6020604051908101604052806000815260200150600060005060003373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005080548060200260200160405190810160405280929190818152602001828054801561023257602002820191906000526020600020905b8160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16815260200190600101908083116101fe575b5050505050905061023e565b90565b600060006000600084604051610abc8061047c83390180828152602001915050604051809103906000f092508291508173ffffffffffffffffffffffffffffffffffffffff1663b7760c8f8633604051837c0100000000000000000000000000000000000000000000000000000000028152600401808381526020018273ffffffffffffffffffffffffffffffffffffffff168152602001925050506020604051808303816000876161da5a03f1156100025750505060405151506001600060005060003373ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000508181805490500191508181548183558181151161037c5781836000526020600020918201910161037b919061035d565b80821115610377576000818150600090555060010161035d565b5090565b5b505050905082600060005060003373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060018303815481101561000257906000526020600020900160005b6101000a81548173ffffffffffffffffffffffffffffffffffffffff0219169083021790555080600060005060003373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005081815481835581811511610468578183600052602060002091820191016104679190610449565b808211156104635760008181506000905550600101610449565b5090565b5b50505050829350610474565b505050919050566060604052604051602080610abc833981016040528080519060200190919050505b80600060005060003373ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600050819055505b50610a57806100656000396000f36060604052361561008a576000357c010000000000000000000000000000000000000000000000000000000090048063181670e61461008c5780631fa03a2b146100c157806370a08231146100f65780638c915b9214610122578063930b7a2314610160578063b7760c8f14610195578063daea85c5146101ca578063fbf1f78a146101f65761008a565b005b6100ab60048080359060200190919080359060200190919050506109ee565b6040518082815260200191505060405180910390f35b6100e060048080359060200190919080359060200190919050506108a7565b6040518082815260200191505060405180910390f35b61010c60048080359060200190919050506105e6565b6040518082815260200191505060405180910390f35b61014a6004808035906020019091908035906020019091908035906020019091905050610356565b6040518082815260200191505060405180910390f35b61017f600480803590602001909190803590602001909190505061091a565b6040518082815260200191505060405180910390f35b6101b46004808035906020019091908035906020019091905050610222565b6040518082815260200191505060405180910390f35b6101e06004808035906020019091905050610624565b6040518082815260200191505060405180910390f35b61020c6004808035906020019091905050610707565b6040518082815260200191505060405180910390f35b600082600060005060003373ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600050541015156103465782600060005060003373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008282825054039250508190555082600060005060008473ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000828282505401925050819055508173ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef856040518082815260200191505060405180910390a3600190506103505661034f565b60009050610350565b5b92915050565b6000600083600060005060008773ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600050541015156105d45760009050600160005060008673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060003373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff161561040a576001905080506104d3565b600260005060008673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060003373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005054841115156104d2576001905080506000600260005060008773ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060003373ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600050819055505b5b60018114156105c65783600060005060008773ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008282825054039250508190555083600060005060008573ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000828282505401925050819055508273ffffffffffffffffffffffffffffffffffffffff168573ffffffffffffffffffffffffffffffffffffffff167fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef866040518082815260200191505060405180910390a3600191506105de566105cf565b600091506105de565b6105dd565b600091506105de565b5b509392505050565b6000600060005060008373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005054905061061f565b919050565b60006001600160005060003373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060008473ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908302179055508173ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167f0e40f4b0b06b7d270eb92aed48caf256e6bbe4f83c5492e7433958cf5566192060016040518082815260200191505060405180910390a360019050610702565b919050565b60006000600160005060003373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060008473ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908302179055506000600260005060003373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060008473ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600050819055508173ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167f0e40f4b0b06b7d270eb92aed48caf256e6bbe4f83c5492e7433958cf5566192060006040518082815260200191505060405180910390a38173ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167fcc92c05edef6bc5dcdfab43862409620fd81888eec1be99935f19375c4ef704e60006040518082815260200191505060405180910390a35b919050565b6000600160005060008473ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060008373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff169050610914565b92915050565b600081600260005060003373ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060008573ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600050819055508273ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167fcc92c05edef6bc5dcdfab43862409620fd81888eec1be99935f19375c4ef704e846040518082815260200191505060405180910390a3600190506109e8565b92915050565b6000600260005060008473ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060005060008373ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600050549050610a51565b9291505056'
 TOKEN_FACTORY_ABI = '[{"inputs":[{"type":"uint256","name":"_initialAmount"}],"constant":false,"name":"createStandardToken","outputs":[{"type":"address","name":""}],"type":"function"},{"inputs":[{"type":"address","name":""},{"type":"uint256","name":""}],"constant":true,"name":"created","outputs":[{"type":"address","name":""}],"type":"function"},{"inputs":[],"constant":false,"name":"createdByMe","outputs":[{"type":"address[]","name":""}],"type":"function"}]';
 
-TOKEN_CONTRACT_ABI = '[{"inputs":[{"type":"address","name":"_target"},{"type":"address","name":"_proxy"}],"constant":true,"name":"isApprovedFor","outputs":[{"type":"bool","name":"_r"}],"type":"function"},{"inputs":[{"type":"address","name":""},{"type":"address","name":""}],"constant":true,"name":"approved_once","outputs":[{"type":"uint256","name":""}],"type":"function"},{"inputs":[{"type":"address","name":""}],"constant":true,"name":"balances","outputs":[{"type":"uint256","name":""}],"type":"function"},{"inputs":[{"type":"address","name":"_proxy"}],"constant":true,"name":"isApproved","outputs":[{"type":"bool","name":"_r"}],"type":"function"},{"inputs":[{"type":"address","name":"_from"},{"type":"uint256","name":"_value"},{"type":"address","name":"_to"}],"constant":false,"name":"sendCoinFrom","outputs":[{"type":"bool","name":"_success"}],"type":"function"},{"inputs":[{"type":"address","name":"_addr"}],"constant":true,"name":"who","outputs":[{"type":"address","name":"_r"}],"type":"function"},{"inputs":[],"constant":true,"name":"sendr","outputs":[{"type":"address","name":"_r"}],"type":"function"},{"inputs":[{"type":"address","name":"_addr"},{"type":"uint256","name":"_maxValue"}],"constant":false,"name":"approveOnce","outputs":[],"type":"function"},{"inputs":[{"type":"address","name":"_addr"}],"constant":true,"name":"coinBalanceOf","outputs":[{"type":"uint256","name":"_r"}],"type":"function"},{"inputs":[{"type":"uint256","name":"_value"},{"type":"address","name":"_to"}],"constant":false,"name":"sendCoin","outputs":[{"type":"bool","name":"_success"}],"type":"function"},{"inputs":[],"constant":true,"name":"coinBalance","outputs":[{"type":"uint256","name":"_r"}],"type":"function"},{"inputs":[{"type":"address","name":"_addr"}],"constant":false,"name":"approve","outputs":[],"type":"function"},{"inputs":[{"type":"address","name":""},{"type":"address","name":""}],"constant":true,"name":"approved","outputs":[{"type":"bool","name":""}],"type":"function"},{"inputs":[{"type":"address","name":"_addr"}],"constant":false,"name":"unapprove","outputs":[],"type":"function"},{"inputs":[{"type":"uint256","name":"_initialAmount"}],"type":"constructor"},{"inputs":[{"indexed":true,"type":"address","name":"from"},{"indexed":true,"type":"address","name":"to"},{"indexed":false,"type":"uint256","name":"value"}],"type":"event","name":"CoinTransfer","anonymous":false},{"inputs":[{"indexed":true,"type":"address","name":"from"},{"indexed":true,"type":"address","name":"to"},{"indexed":false,"type":"bool","name":"result"}],"type":"event","name":"AddressApproval","anonymous":false},{"inputs":[{"indexed":true,"type":"address","name":"from"},{"indexed":true,"type":"address","name":"to"},{"indexed":false,"type":"uint256","name":"value"}],"type":"event","name":"AddressApprovalOnce","anonymous":false}]'
+TOKEN_CONTRACT_ABI = '[{"inputs":[{"type":"address","name":"_target"},{"type":"address","name":"_proxy"}],"constant":true,"name":"isApprovedOnceFor","outputs":[{"type":"uint256","name":"_maxValue"}],"type":"function"},{"inputs":[{"type":"address","name":"_target"},{"type":"address","name":"_proxy"}],"constant":true,"name":"isApprovedFor","outputs":[{"type":"bool","name":"_r"}],"type":"function"},{"inputs":[{"type":"address","name":"_addr"}],"constant":true,"name":"balanceOf","outputs":[{"type":"uint256","name":"_r"}],"type":"function"},{"inputs":[{"type":"address","name":"_from"},{"type":"uint256","name":"_value"},{"type":"address","name":"_to"}],"constant":false,"name":"transferFrom","outputs":[{"type":"bool","name":"_success"}],"type":"function"},{"inputs":[{"type":"address","name":"_addr"},{"type":"uint256","name":"_maxValue"}],"constant":false,"name":"approveOnce","outputs":[{"type":"bool","name":"_success"}],"type":"function"},{"inputs":[{"type":"uint256","name":"_value"},{"type":"address","name":"_to"}],"constant":false,"name":"transfer","outputs":[{"type":"bool","name":"_success"}],"type":"function"},{"inputs":[{"type":"address","name":"_addr"}],"constant":false,"name":"approve","outputs":[{"type":"bool","name":"_success"}],"type":"function"},{"inputs":[{"type":"address","name":"_addr"}],"constant":false,"name":"unapprove","outputs":[{"type":"bool","name":"_success"}],"type":"function"},{"inputs":[{"type":"uint256","name":"_initialAmount"}],"type":"constructor"},{"inputs":[{"indexed":true,"type":"address","name":"from"},{"indexed":true,"type":"address","name":"to"},{"indexed":false,"type":"uint256","name":"value"}],"type":"event","name":"Transfer","anonymous":false},{"inputs":[{"indexed":true,"type":"address","name":"addr"},{"indexed":true,"type":"address","name":"proxy"},{"indexed":false,"type":"bool","name":"result"}],"type":"event","name":"AddressApproval","anonymous":false},{"inputs":[{"indexed":true,"type":"address","name":"addr"},{"indexed":true,"type":"address","name":"proxy"},{"indexed":false,"type":"uint256","name":"value"}],"type":"event","name":"AddressApprovalOnce","anonymous":false}]'
 
 TOKEN_ENDOWMENT = 2**200
 REWARD_PER_HEADER = 1000
-FEE_VERIFY_TX = 100000000000000000
-TOTAL_FEE_RELAY_TX = 0 + FEE_VERIFY_TX
+INIT_FEE_VERIFY_TX = 10000000000000000  # 0.01 ETH
+TOTAL_FEE_RELAY_TX = 0 + INIT_FEE_VERIFY_TX
+MAX_DECREASE_FVTX = -1/1024.0
+MAX_INCREASE_FVTX = 127/128.0/1024
+MIN_DELTA_FVTX = 1/128.0/1024
+
+Account = namedtuple('Account', ['key', 'addr'])
 
 
 class TestTokens(object):
@@ -79,12 +84,12 @@ class TestTokens(object):
 
 
         ethBal = self.s.block.get_balance(addrSender)
-        res = self.c.verifyTx(txHash, txIndex, siblings, txBlockHash, sender=keySender, value=FEE_VERIFY_TX, profiling=True)
+        res = self.c.verifyTx(txHash, txIndex, siblings, txBlockHash, sender=keySender, value=INIT_FEE_VERIFY_TX, profiling=True)
         print('GAS: '+str(res['gas']))
         assert res['output'] == 1  # adjust according to numHeader and the block that the tx belongs to
 
-        assert self.s.block.get_balance(addrSender) == ethBal - FEE_VERIFY_TX
-        assert self.s.block.get_balance(self.c.address) == FEE_VERIFY_TX
+        assert self.s.block.get_balance(addrSender) == ethBal - INIT_FEE_VERIFY_TX
+        assert self.s.block.get_balance(self.c.address) == INIT_FEE_VERIFY_TX
 
 
         assert eventArr == [{'_event_type': 'ethPayment'}]
@@ -112,26 +117,128 @@ class TestTokens(object):
     def testInsufficientPayVerifyTx(self):
         numHeader = 24  # minimum is 24 (block 300017 plus 6 confirmations)
         # headers are stored by k1, but k0 is who makes the verifyTx call
-        self.storeHeadersFrom300K(numHeader, tester.k1, tester.a1)
-        keySender = tester.k0
-        addrSender = tester.a0
+        verifier = Account(tester.k0, tester.a0)
+        submitter = Account(tester.k1, tester.a1)
+        self.storeHeadersFrom300K(numHeader, submitter.key, submitter.addr)
 
         # block 300017
         header = {'nonce': 2022856018, 'hash': u'000000000000000032c0ae55f7f52b179a6346bb0d981af55394a3b9cdc556ea', 'timestamp': 1399708353, 'merkle_root': u'2fcb4296ba8d2cc5748a9310bac31d2652389c4d70014ccf742d0e4409a612c9', 'version': 2, 'prevhash': u'00000000000000002ec86a542e2cefe62dcec8ac2317a1dc92fbb094f9d30941', 'bits': 419465580}
         hashes = [u'29d2afa00c4947965717542a9fcf31aa0d0f81cbe590c9b794b8c55d7a4803de', u'84d4e48925445ef3b5722edaad229447f6ef7c77dfdb3b67b288a2e9dac97ebf', u'9f1ddd2fed16b0615d8cdd99456f5229ff004ea93234256571972d8c4eda05dd', u'ca31ee6fecd2d054b85449fb52d2b2bd9f8777b5e603a02d7de53c09e300d127', u'521eabbe29ce215b4b309db7807ed8f655ddb34233b2cfe8178522a335154923', u'a03159699523335896ec6d1ce0a18b247a3373b288cefe6ed5d14ddeeb71db45', u'810a3a390a4b565a54606dd0921985047cf940070b0c61a82225fc742aa4a2e3', u'161400e37071b7096ca6746e9aa388e256d2fe8816cec49cdd73de82f9dae15d', u'af355fbfcf63b67a219de308227dca5c2905c47331a8233613e7f7ac4bacc875', u'1c433a2359318372a859c94ace4cd2b1d5f565ae2c8496ef8255e098c710b9d4', u'49e09d2f48a8f11e13864f7daca8c6b1189507511a743149e16e16bca1858f80', u'5fd034ffd19cda72a78f7bacfd7d9b7b0bc64bc2d3135382db29238aa4d3dd03', u'74ab68a617c8419e6cbae05019a2c81fea6439e233550e5257d9411677845f34', u'df2650bdfcb4efe5726269148828ac18e2a1990c15f7d01d572252656421e896', u'1501aa1dbcada110009fe09e9cec5820fce07e4178af45869358651db4e2b282', u'41f96bb7e58018722c4d0dae2f6f4381bb1d461d3a61eac8b77ffe274b535292', u'aaf9b4e66d5dadb4b4f1107750a18e705ce4b4683e161eb3b1eaa04734218356', u'56639831c523b68cac6848f51d2b39e062ab5ff0b6f2a7dea33765f8e049b0b2', u'3a86f1f34e5d4f8cded3f8b22d6fe4b5741247be7ed164ca140bdb18c9ea7f45', u'da0322e4b634ec8dac5f9b173a2fe7f6e18e5220a27834625a0cfe6d0680c6e8', u'f5d94d46d68a6e953356499eb5d962e2a65193cce160af40200ab1c43228752e', u'e725d4efd42d1213824c698ef4172cdbab683fe9c9170cc6ca552f52244806f6', u'e7711581f7f9028f8f8b915fa0ddb091baade88036bf6f309e2d802043c3231d']
         [txHash, txIndex, siblings, txBlockHash] = makeMerkleProof(header, hashes, 1)
 
-        ethPaid = FEE_VERIFY_TX - 1
-        ethBal = self.s.block.get_balance(addrSender)
-        assert 0 == self.c.verifyTx(txHash, txIndex, siblings, txBlockHash, sender=keySender, value=ethPaid)
+        currFee = self.c.getFeeVerifyTx()
+        h24fee = currFee
 
-        assert self.s.block.get_balance(addrSender) == ethBal - ethPaid
-        assert self.s.block.get_balance(self.c.address) == ethPaid
+        expBalVerifier = self.s.block.get_balance(verifier.addr)
+        expBalRelay = self.s.block.get_balance(self.c.address)
+
+        # insufficient payment does not allow verifyTx (and no refund)
+        valSend = currFee - 1
+        expBalVerifier -= valSend
+        expBalRelay += valSend
+        assert 0 == self.c.verifyTx(txHash, txIndex, siblings, txBlockHash, sender=verifier.key, value=valSend)
+        assert self.s.block.get_balance(verifier.addr) == expBalVerifier
+        assert self.s.block.get_balance(self.c.address) == expBalRelay
+
+        # sufficient payment
+        valSend = currFee
+        expBalVerifier -= valSend
+        expBalRelay += valSend
+        assert 1 == self.c.verifyTx(txHash, txIndex, siblings, txBlockHash, sender=verifier.key, value=valSend)
+        assert self.s.block.get_balance(verifier.addr) == expBalVerifier
+        assert self.s.block.get_balance(self.c.address) == expBalRelay
+
+        #
+        # add block and raise fee by minimum amount; valSend should now be
+        # insufficient and not allow verifyTx
+        #
+        assert self.c.getBlockHash(self.c.getLastBlockHeight()) == 0x00000000000000003c8755a720049ced2bd4d597b57d38fd02dcd042925decef
+        nextHeader = '02000000efec5d9242d0dc02fd387db597d5d42bed9c0420a755873c00000000000000003761f36923e9c2b5950fbb291b8a4a644dfcde1c519589876bc6d236b8e22444c0ec6d536c890019ca5900c3'
+        feeFactor = '81'
+        nextHeader += feeFactor
+        assert self.c.storeBlockHeader(nextHeader.decode('hex')) == 300024
+        assert self.c.getFeeVerifyTx() == currFee + int(currFee*MIN_DELTA_FVTX)
+        currFee += int(currFee*MIN_DELTA_FVTX)
+
+        # paying old fee is insufficient now
+        expBalVerifier -= valSend
+        expBalRelay += valSend
+        assert 0 == self.c.verifyTx(txHash, txIndex, siblings, txBlockHash, sender=verifier.key, value=valSend)
+        assert self.s.block.get_balance(verifier.addr) == expBalVerifier
+        assert self.s.block.get_balance(self.c.address) == expBalRelay
+
+        valSend = currFee - 1
+        expBalVerifier -= valSend
+        expBalRelay += valSend
+        assert 0 == self.c.verifyTx(txHash, txIndex, siblings, txBlockHash, sender=verifier.key, value=valSend)
+        assert self.s.block.get_balance(verifier.addr) == expBalVerifier
+        assert self.s.block.get_balance(self.c.address) == expBalRelay
+
+        # send the exact fee required
+        valSend = h24fee + int(h24fee*MIN_DELTA_FVTX)
+        assert valSend == currFee
+        expBalVerifier -= valSend
+        expBalRelay += valSend
+        assert 1 == self.c.verifyTx(txHash, txIndex, siblings, txBlockHash, sender=verifier.key, value=valSend)
+        assert self.s.block.get_balance(verifier.addr) == expBalVerifier
+        assert self.s.block.get_balance(self.c.address) == expBalRelay
+
+
+    def testFeeVerifyTxMaxDecrease(self):
+        newFee = self.checkAdjustFeeVerifyTx('00')
+        assert newFee == INIT_FEE_VERIFY_TX * (1+MAX_DECREASE_FVTX)
+        self.s.revert(self.snapshot)
+        assert self.checkAdjustFeeVerifyTx('') == newFee
+
+    def testFeeVerifyTxMaxIncrease(self):
+        feeUp = self.checkAdjustFeeVerifyTx('ff')
+        assert feeUp == INIT_FEE_VERIFY_TX + int(INIT_FEE_VERIFY_TX * MAX_INCREASE_FVTX)
+        self.s.revert(self.snapshot)
+        feeDown = self.checkAdjustFeeVerifyTx('01')
+        assert (feeUp + feeDown) / 2 == INIT_FEE_VERIFY_TX  # deltas in feeUp and feeDown are equal
+
+    def testFeeVerifyTxNoDecrease(self):
+        newFee = self.checkAdjustFeeVerifyTx('80')
+        assert newFee == INIT_FEE_VERIFY_TX
+
+    def testFeeVerifyTxMinDecrease(self):
+        newFee = self.checkAdjustFeeVerifyTx('7f')
+        assert newFee == INIT_FEE_VERIFY_TX + int(INIT_FEE_VERIFY_TX * -MIN_DELTA_FVTX)
+
+    def testFeeVerifyTxMinIncrease(self):
+        newFee = self.checkAdjustFeeVerifyTx('81')
+        assert newFee == INIT_FEE_VERIFY_TX + int(INIT_FEE_VERIFY_TX * MIN_DELTA_FVTX)
+
+    # based on testRewardOneBlock
+    def checkAdjustFeeVerifyTx(self, feeFactor):
+        block300K = 0x000000000000000008360c20a2ceff91cc8c4f357932377f48659b37bb86c759
+        self.c.setInitialParent(block300K, 299999, 1)
+        blockHeaderStr = '0200000059c786bb379b65487f373279354f8ccc91ffcea2200c36080000000000000000dd9d7757a736fec629ab0ed0f602ba23c77afe7edec85a7026f641fd90bcf8f658ca8154747b1b1894fc742f'
+        blockHeaderStr += feeFactor
+        bhBytes = blockHeaderStr.decode('hex')
+        res = self.c.storeBlockHeader(bhBytes, profiling=True, sender=tester.k1)
+        print('GAS: %s' % res['gas'])
+        assert res['output'] == 300000
+
+        # '0'+feeFactor trick per http://stackoverflow.com/a/31679342
+        expFee = INIT_FEE_VERIFY_TX + self.deltaFee(int('0'+feeFactor, 16), INIT_FEE_VERIFY_TX)
+        newFee = self.c.getFeeVerifyTx()
+        assert newFee == expFee
+        return newFee
+
+
+    # feeFactor is in range [0, 255]
+    # in hex [0, 7f] is decrease [81-ff] is increase; hex80 no change
+    # thus max fee decrease is slightly more than max fee increase
+    def deltaFee(self, feeFactor, currFee):
+        if feeFactor not in range(256):
+            raise ValueError('feeFactor must be in range [0,255]')
+        return int(currFee * ((feeFactor - 128)/128.0) / 1024.0)
 
 
     # based on test_btcrelay testStoreBlockHeader
     def testRewardOneBlock(self):
-        bal = self.xcoin.coinBalanceOf(self.c.address)
+        bal = self.xcoin.balanceOf(self.c.address)
         assert bal == TOKEN_ENDOWMENT
 
         block300K = 0x000000000000000008360c20a2ceff91cc8c4f357932377f48659b37bb86c759
@@ -157,9 +264,9 @@ class TestTokens(object):
         eventArr.pop()
 
 
-        assert self.xcoin.coinBalanceOf(tester.a1) == REWARD_PER_HEADER
+        assert self.xcoin.balanceOf(tester.a1) == REWARD_PER_HEADER
 
-        bal = self.xcoin.coinBalanceOf(self.c.address)
+        bal = self.xcoin.balanceOf(self.c.address)
         assert bal == TOKEN_ENDOWMENT - REWARD_PER_HEADER
 
 
@@ -182,7 +289,7 @@ class TestTokens(object):
             assert res == i+100000
 
         expCoinsOfSender = 2*REWARD_PER_HEADER
-        assert self.xcoin.coinBalanceOf(addrSender) == expCoinsOfSender
+        assert self.xcoin.balanceOf(addrSender) == expCoinsOfSender
 
         # these are alternative blocks and store all 3,
         # but they do not have enough work and will not be on main chain
@@ -205,11 +312,11 @@ class TestTokens(object):
 
             assert res == i+100000  # fake blocks are stored since there is possibility they can become the main chain
 
-        assert self.xcoin.coinBalanceOf(addrSender) == expCoinsOfSender
+        assert self.xcoin.balanceOf(addrSender) == expCoinsOfSender
 
         # store a block with enough work that it extends the main chain
         assert 100002 == self.c.storeBlockHeader(blockHeaderBytes[2])
-        assert self.xcoin.coinBalanceOf(addrSender) == expCoinsOfSender + REWARD_PER_HEADER
+        assert self.xcoin.balanceOf(addrSender) == expCoinsOfSender + REWARD_PER_HEADER
 
 
     # oneSender stores 2 headers; twoSender stores 1 header
@@ -237,11 +344,11 @@ class TestTokens(object):
             # print('@@@@ real chain score: ' + str(self.c.getCumulativeDifficulty()))
             assert res == i+100000
 
-        assert self.xcoin.coinBalanceOf(oneSender.addr) == oneSender.expCoins
+        assert self.xcoin.balanceOf(oneSender.addr) == oneSender.expCoins
 
         twoSender = Sender(tester.k2, tester.a2, REWARD_PER_HEADER)
         assert 100002 == self.c.storeBlockHeader(blockHeaderBytes[2], sender=twoSender.key)
-        assert self.xcoin.coinBalanceOf(twoSender.addr) == twoSender.expCoins
+        assert self.xcoin.balanceOf(twoSender.addr) == twoSender.expCoins
 
 
         keySender = tester.k0
@@ -252,27 +359,27 @@ class TestTokens(object):
         [txHash, txIndex, siblings, txBlockHash] = makeMerkleProof(header, hashes, 1)
 
         ethBal = self.s.block.get_balance(addrSender)
-        res = self.c.verifyTx(txHash, txIndex, siblings, txBlockHash, sender=keySender, value=FEE_VERIFY_TX, profiling=True)
+        res = self.c.verifyTx(txHash, txIndex, siblings, txBlockHash, sender=keySender, value=INIT_FEE_VERIFY_TX, profiling=True)
         assert res['output'] == 0  # verify fails but not the point of this test
 
-        totalEthFee = FEE_VERIFY_TX
-        assert self.s.block.get_balance(addrSender) == ethBal - FEE_VERIFY_TX
-        assert self.s.block.get_balance(self.c.address) == FEE_VERIFY_TX
+        totalEthFee = INIT_FEE_VERIFY_TX
+        assert self.s.block.get_balance(addrSender) == ethBal - INIT_FEE_VERIFY_TX
+        assert self.s.block.get_balance(self.c.address) == INIT_FEE_VERIFY_TX
 
         #
         # twoSender cashes out ALL and should get 1/3 of the ETH fees
         #
         twoBalEth = self.s.block.get_balance(twoSender.addr)
-        contractTokenBal = self.xcoin.coinBalanceOf(self.c.address)
+        contractTokenBal = self.xcoin.balanceOf(self.c.address)
 
         self.s.block.coinbase = twoSender.addr
         self.xcoin.approveOnce(self.c.address, twoSender.expCoins, sender=twoSender.key)
         self.c.cashOut(twoSender.expCoins, sender=twoSender.key)  # cashes out ALL
         self.s.block.coinbase = addrSender
         # coinbase dance needed so that balances are as expected
-        assert self.xcoin.coinBalanceOf(twoSender.addr) == 0
+        assert self.xcoin.balanceOf(twoSender.addr) == 0
         contractTokenBal += twoSender.expCoins
-        assert self.xcoin.coinBalanceOf(self.c.address) == contractTokenBal
+        assert self.xcoin.balanceOf(self.c.address) == contractTokenBal
         ethGrant = totalEthFee / 3
         assert self.s.block.get_balance(twoSender.addr) == twoBalEth + ethGrant
 
@@ -291,9 +398,9 @@ class TestTokens(object):
         self.c.cashOut(oneSender.expCoins/2, sender=oneSender.key)  # cashes out HALF
         self.s.block.coinbase = addrSender
         # coinbase dance needed so that balances are as expected
-        assert self.xcoin.coinBalanceOf(oneSender.addr) == oneSender.expCoins/2
+        assert self.xcoin.balanceOf(oneSender.addr) == oneSender.expCoins/2
         contractTokenBal += oneSender.expCoins/2
-        assert self.xcoin.coinBalanceOf(self.c.address) == contractTokenBal
+        assert self.xcoin.balanceOf(self.c.address) == contractTokenBal
         ethGrant = totalEthFee / 2
         assert self.s.block.get_balance(oneSender.addr) == oneBalEth + ethGrant
 
@@ -311,9 +418,9 @@ class TestTokens(object):
         self.c.cashOut(oneSenderCoins, sender=oneSender.key)  # cashes out ALL
         self.s.block.coinbase = addrSender
         # coinbase dance needed so that balances are as expected
-        assert self.xcoin.coinBalanceOf(oneSender.addr) == 0
+        assert self.xcoin.balanceOf(oneSender.addr) == 0
         contractTokenBal += oneSenderCoins
-        assert self.xcoin.coinBalanceOf(self.c.address) == contractTokenBal
+        assert self.xcoin.balanceOf(self.c.address) == contractTokenBal
         ethGrant = totalEthFee
         assert self.s.block.get_balance(oneSender.addr) == oneBalEth + ethGrant
 
@@ -322,7 +429,7 @@ class TestTokens(object):
 
 
     def testEndowment(self):
-        assert self.xcoin.coinBalanceOf(self.c.address) == TOKEN_ENDOWMENT
+        assert self.xcoin.balanceOf(self.c.address) == TOKEN_ENDOWMENT
 
 
     # based on test_btcBulkStoreHeaders bulkStore10From300K
@@ -349,7 +456,7 @@ class TestTokens(object):
         assert res['output'] == numHeader-1 + startBlockNum
 
         expCoinsOfSender = numHeader*REWARD_PER_HEADER
-        assert self.xcoin.coinBalanceOf(addrSender) == expCoinsOfSender
+        assert self.xcoin.balanceOf(addrSender) == expCoinsOfSender
 
         # block 300000
         header = {'nonce': 222771801, 'hash': u'000000000000000082ccf8f1557c5d40b21edabb18d2d691cfbf87118bac7254', 'timestamp': 1399703554, 'merkle_root': u'915c887a2d9ec3f566a648bedcf4ed30d0988e22268cfe43ab5b0cf8638999d3', 'version': 2, 'prevhash': u'000000000000000067ecc744b5ae34eebbde14d21ca4db51652e4d67e155f07e', 'bits': 419465580}
@@ -402,6 +509,7 @@ class TestTokens(object):
 
         expCoinsOfSender = 0
         i = 1
+        feeVTX = INIT_FEE_VERIFY_TX
         with open("test/headers/100from300k.txt") as f:
 
             startTime = datetime.now().time()
@@ -411,14 +519,22 @@ class TestTokens(object):
                 assert res == i-1+startBlockNum
 
                 expCoinsOfSender += REWARD_PER_HEADER
-                assert self.xcoin.coinBalanceOf(addrSender) == expCoinsOfSender
-                assert self.xcoin.coinBalanceOf(self.c.address) == TOKEN_ENDOWMENT - expCoinsOfSender
+                assert self.xcoin.balanceOf(addrSender) == expCoinsOfSender
+                assert self.xcoin.balanceOf(self.c.address) == TOKEN_ENDOWMENT - expCoinsOfSender
+
+                # http://stackoverflow.com/questions/19919387/in-python-what-is-a-good-way-to-round-towards-zero-in-integer-division
+                feeVTX += int((feeVTX * -128.0) / (128*1024))
 
                 if i==numHeader:
                     break
                 i += 1
 
             endTime = datetime.now().time()
+
+        assert self.c.getFeeVerifyTx() == feeVTX
+
+        approxFee = INIT_FEE_VERIFY_TX*(1+MAX_DECREASE_FVTX)**numHeader
+        assert abs(self.c.getFeeVerifyTx() - approxFee) < 10  # within 10wei is quite accurate
 
         # duration = datetime.combine(date.today(), endTime) - datetime.combine(date.today(), startTime)
         # print("********** duration: "+str(duration)+" ********** start:"+str(startTime)+" end:"+str(endTime))

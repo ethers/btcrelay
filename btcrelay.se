@@ -90,7 +90,7 @@ def storeBlockHeader(blockHeaderBytes:str):
     if !scorePrevBlock:
         return(0)
 
-    blockHash = m_hashBlockHeader(blockHeaderBytes)
+    blockHash = m_hashBlockHeader(blockHeaderBytes)  # only hashes first 80 bytes
 
     scoreBlock = m_getScore(blockHash)
     if scoreBlock != 0:  # block already stored/exists
@@ -142,6 +142,7 @@ def storeBlockHeader(blockHeaderBytes:str):
             self.heaviestBlock = blockHash
             self.highScore = scoreBlock
             rewardForBlockHeader(blockHeight)
+            m_adjustFee(byte(8, wordWithBits))  # feeFactor is 81st byte ie 8th byte after 'bits'
 
         return(blockHeight)
 
@@ -281,12 +282,6 @@ def within6Confirms(txBlockHash):
     return(0)
 
 
-# TODO: should this charge fee?  what about other APIs?
-# getBlockHeaders costs around 23K gas
-def getBlockHeader(blockHash):
-    return(load(self.block[blockHash]._blockHeader[0], chars=80):str)
-
-
 # TODO is an API like getInitialParent() needed? it could be obtained using
 # web3.eth.getStorageAt using index 0x4000000000001
 
@@ -387,7 +382,7 @@ macro m_lastBlockHeight():
 
 # Bitcoin-way of hashing a block header
 macro m_hashBlockHeader($blockHeaderBytes):
-    flip32Bytes(sha256(sha256($blockHeaderBytes:str)))
+    flip32Bytes(sha256(sha256($blockHeaderBytes, chars=80)))
 
 
 # Bitcoin-way of computing the target from the 'bits' field of a blockheader

@@ -1,22 +1,25 @@
 
 extern btcrelayTokenFactory: [createStandardToken:[uint256]:address]
 
-extern btcrelayToken: [sendCoin:[uint256,address]:bool, sendCoinFrom:[address,uint256,address]:bool, coinBalance:[]:address, coinBalanceOf:[address]:address]
+extern btcrelayToken: [transfer:[uint256,address]:bool, transferFrom:[address,uint256,address]:bool, balanceOf:[address]:address]
 
 
-# TODO pack more data in the slot of tokenContract?
+# TODO pack more data since this address is only 20 bytes
 # address of contract that will issue btcrelay tokens
 data tokenContract
 
 # TODO optimize by avoiding this extra storage slot?
 data numTokenIssued
 
+# TODO optimize by avoiding this extra storage slot?
+data feeVerifyTx
+
 
 # TODO move to constants.se
 #macro TOKEN_FACTORY: 0xfd5aee44be7195a704a86c18dfc0b65813486f7e
 macro TOKEN_ENDOWMENT: 2**200
 macro REWARD_PER_HEADER: 1000
-macro FEE_VERIFY_TX: 100000000000000000  # 0.1 ETH
+macro INIT_FEE_VERIFY_TX: 10000000000000000  # 0.01 ETH
 
 
 event rewardToken(blockHeight:indexed, rewardAddr:address)  # TODO: indexed or not?
@@ -26,6 +29,7 @@ event ethPayment()
 
 def initTokenContract(tokenFactoryAddr):
     if !self.tokenContract:  # can only be set once
+        self.feeVerifyTx = INIT_FEE_VERIFY_TX
         self.tokenContract = tokenFactoryAddr.createStandardToken(TOKEN_ENDOWMENT)
         return(self.tokenContract)
 
@@ -36,22 +40,30 @@ def cashOut(numToken):
     m_cashOut(numToken)
 
 
+def getFeeVerifyTx():
+    return(self.feeVerifyTx)
+
 
 # tx.origin is issued tokens when a blockHeader is stored
 macro rewardForBlockHeader($blockHeight):
     # reward tx.origin, since storeBlockHeader() may be called indirectly like bulkStoreHeader()
-    if self.tokenContract.sendCoin(REWARD_PER_HEADER, tx.origin):
+    if self.tokenContract.transfer(REWARD_PER_HEADER, tx.origin):
         self.numTokenIssued += REWARD_PER_HEADER
         log(type=rewardToken, $blockHeight, tx.origin)  # TODO: should msg.sender also be logged
 
 
+macro m_adjustFee($feeFactor):
+    # 131072 is from 128*1024
+    self.feeVerifyTx += self.feeVerifyTx * ($feeFactor - 128) / 131072  # use / for signed div
+
+
 macro chargeVerifyTx():
-    msg.value >= FEE_VERIFY_TX
+    msg.value >= self.feeVerifyTx
 
 
 # TODO tx.origin ?
 macro m_cashOut($numToken):
-    if self.tokenContract.sendCoinFrom(msg.sender, $numToken, self):
+    if self.tokenContract.transferFrom(msg.sender, $numToken, self):
         $numEth = self.balance * $numToken / self.numTokenIssued
         self.numTokenIssued -= $numToken
         send(msg.sender, $numEth)
