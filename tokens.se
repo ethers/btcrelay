@@ -1,7 +1,7 @@
 
 extern btcrelayTokenFactory: [createStandardToken:[uint256]:address]
 
-extern btcrelayToken: [sendCoin:[uint256,address]:bool, sendCoinFrom:[address,uint256,address]:bool, coinBalance:[]:address, coinBalanceOf:[address]:address]
+extern btcrelayToken: [transfer:[uint256,address]:bool, transferFrom:[address,uint256,address]:bool, balanceOf:[address]:address]
 
 
 # TODO pack more data since this address is only 20 bytes
@@ -47,7 +47,7 @@ def getFeeVerifyTx():
 # tx.origin is issued tokens when a blockHeader is stored
 macro rewardForBlockHeader($blockHeight):
     # reward tx.origin, since storeBlockHeader() may be called indirectly like bulkStoreHeader()
-    if self.tokenContract.sendCoin(REWARD_PER_HEADER, tx.origin):
+    if self.tokenContract.transfer(REWARD_PER_HEADER, tx.origin):
         self.numTokenIssued += REWARD_PER_HEADER
         log(type=rewardToken, $blockHeight, tx.origin)  # TODO: should msg.sender also be logged
 
@@ -63,7 +63,7 @@ macro chargeVerifyTx():
 
 # TODO tx.origin ?
 macro m_cashOut($numToken):
-    if self.tokenContract.sendCoinFrom(msg.sender, $numToken, self):
+    if self.tokenContract.transferFrom(msg.sender, $numToken, self):
         $numEth = self.balance * $numToken / self.numTokenIssued
         self.numTokenIssued -= $numToken
         send(msg.sender, $numEth)
