@@ -32,7 +32,7 @@ data heaviestBlock
 # highest score among all blocks (so far)
 data highScore
 
-event failure(errCode:indexed)
+event Failure(errCode:indexed)
 
 # def init():
     # self.tokenContract = TOKEN_FACTORY.createStandardToken(TOKEN_ENDOWMENT)
@@ -116,7 +116,7 @@ def storeBlockHeader(blockHeaderBytes:str):
             # the initial parent, but as these forks will have lower score than
             # the main chain, they will not have impact.
             if bits != prevBits && prevBits != 0:
-                log(type=failure, ERR_DIFFICULTY)
+                log(type=Failure, ERR_DIFFICULTY)
                 return(ERR_DIFFICULTY)
         else:
             prevTarget = targetFromBits(prevBits)
@@ -129,7 +129,7 @@ def storeBlockHeader(blockHeaderBytes:str):
 
             newBits = m_computeNewBits(prevTime, startTime, prevTarget)
             if bits != newBits && newBits != 0:  # newBits != 0 to allow first header
-                log(type=failure, ERR_RETARGET)
+                log(type=Failure, ERR_RETARGET)
                 return(ERR_RETARGET)
 
         difficulty = 0x00000000FFFF0000000000000000000000000000000000000000000000000000 / target # https://en.bitcoin.it/wiki/Difficulty
@@ -161,7 +161,7 @@ def verifyTx(txHash, txIndex, sibling:arr, txBlockHash):
         # insufficient payments are NOT refunded
         return(0)
 
-    log(type=ethPayment)
+    log(type=EthPayment)
 
     if self.within6Confirms(txBlockHash) || !self.inMainChain(txBlockHash):
         return(0)
@@ -186,12 +186,12 @@ def verifyTx(txHash, txIndex, sibling:arr, txBlockHash):
 def relayTx(txStr:str, txHash, txIndex, sibling:arr, txBlockHash, contract):
     if self.verifyTx(txHash, txIndex, sibling, txBlockHash, value=msg.value) == 1:
         res = contract.processTransaction(txStr, txHash)
-        log(msg.sender, data=[res])
+        # log(msg.sender, data=[res])  # TODO
         return(res)
 
     # log error code -9999 on both this contract and target contract
-    log(msg.sender, data=[-9999])
-    log(contract, data=[-9999])
+    log(type=Failure, ERR_RELAY_VERIFY)
+    # log(contract, data=[-9999]) TODO how to log under 'contract' address?
     return(0)
 
 

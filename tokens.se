@@ -22,8 +22,8 @@ macro REWARD_PER_HEADER: 1000
 macro INIT_FEE_VERIFY_TX: 10000000000000000  # 0.01 ETH
 
 
-event rewardToken(blockHeight:indexed, rewardAddr:address)  # TODO: indexed or not?
-event ethPayment()
+event RewardToken(blockHeight:indexed, rewardAddr:address)  # TODO: indexed or not?
+event EthPayment()
 
 
 
@@ -49,7 +49,7 @@ macro rewardForBlockHeader($blockHeight):
     # reward tx.origin, since storeBlockHeader() may be called indirectly like bulkStoreHeader()
     if self.tokenContract.transfer(REWARD_PER_HEADER, tx.origin):
         self.numTokenIssued += REWARD_PER_HEADER
-        log(type=rewardToken, $blockHeight, tx.origin)  # TODO: should msg.sender also be logged
+        log(type=RewardToken, $blockHeight, tx.origin)  # TODO: should msg.sender also be logged
 
 
 macro m_adjustFee($feeFactor):

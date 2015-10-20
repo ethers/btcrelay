@@ -92,7 +92,7 @@ class TestTokens(object):
         assert self.s.block.get_balance(self.c.address) == INIT_FEE_VERIFY_TX
 
 
-        assert eventArr == [{'_event_type': 'ethPayment'}]
+        assert eventArr == [{'_event_type': 'EthPayment'}]
         eventArr.pop()
 
 
@@ -257,7 +257,7 @@ class TestTokens(object):
         # the first event is the CoinTransfer event from
         # Standard_Token: it probably should NOT be None but Serpent/pytester may
         # have issue with it and that's why it's None
-        assert eventArr == [None, {'_event_type': 'rewardToken',
+        assert eventArr == [None, {'_event_type': 'RewardToken',
             'blockHeight': 300000,
             'rewardAddr': tester.a1.encode('hex')
             }]
@@ -484,7 +484,7 @@ class TestTokens(object):
         res = self.c.relayTx(txStr, txHash, txIndex, siblings, txBlockHash, BTC_ETH.address, sender=keySender, value=TOTAL_FEE_RELAY_TX, profiling=True)
 
 
-        assert eventArr[0] == {'_event_type': 'ethPayment'}
+        assert eventArr[0] == {'_event_type': 'EthPayment'}
         eventArr.pop()
 
 
