@@ -130,7 +130,7 @@ class TestFee(object):
         block300K = 0x000000000000000008360c20a2ceff91cc8c4f357932377f48659b37bb86c759
         self.c.setInitialParent(block300K, 299999, 1)
 
-        expPayWei = 15
+        expPayWei = 15 * 0xf4240
         blockHeaderStr = '0200000059c786bb379b65487f373279354f8ccc91ffcea2200c36080000000000000000dd9d7757a736fec629ab0ed0f602ba23c77afe7edec85a7026f641fd90bcf8f658ca8154747b1b1894fc742f'
         bhBytes = blockHeaderStr.decode('hex')
         res = self.c.storeBlockWithFee(bhBytes, expPayWei, profiling=True, sender=tester.k1)
@@ -148,6 +148,7 @@ class TestFee(object):
         feeInfo = self.c.funcGetFeeInfo(blockHash)
         feeRecipient = feeInfo / 2**(12*8)
         feeWei = 0x0000000000000000000000000000000000000000ffffffffffffffffffffffff & feeInfo
+        # feeWei = (0x0000000000000000000000000000000000000000ffffffffffffffffffffffff & feeInfo) * 0xf4240
 
         assert feeRecipient == int(tester.a1.encode('hex'), 16)
         assert feeWei == expPayWei
@@ -228,7 +229,7 @@ class TestFee(object):
         prevFee = nextFee
         thirdRec = int(tester.a3.encode('hex'), 16)
         balThirdRec = self.s.block.get_balance(tester.a3)
-        nextFee = 1
+        nextFee = 1 + 0xf4240
         assert self.c.changeFeeRecipient(blockHash, nextFee, thirdRec) == 0
         assert self.c.changeFeeRecipient(blockHash, nextFee, thirdRec, value=prevFee-1) == 0
         assert self.c.changeFeeRecipient(blockHash, nextFee, thirdRec, value=prevFee+1) == 0
