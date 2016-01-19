@@ -399,6 +399,19 @@ class TestFee(object):
         assert self.s.block.get_balance(tester.a2) == balNextRec
         assert self.s.block.get_balance(tester.a1) == balRecipient
 
+# def feePaid(txBlockHash, amountWei):
+#     if msg.value >= amountWei:
+#         if msg.value > 0:
+#             feeRecipient = m_getFeeRecipient(txBlockHash)
+#             return(send(feeRecipient, msg.value))
+#             log(type=EthPayment, feeRecipient, msg.value)
+#         return(1)
+#     return(0)
+#
+    def testSendException(self):
+        feePaid = 13
+        res = self.c.attackFeePaid(0, 0, feePaid, feePaid, 0, value=feePaid)
+        assert res == 1
 
     # based on https://github.com/ethers/btcrelay/blob/4fca910ca4d5d95c0a6b6d1a8c75b2d5a942e113/test/test_tokens.py#L361
     def checkRelay(self, txStr, txIndex, btcAddr, hh, keyVerifier, addrVerifier, addrFeeRecipient):
