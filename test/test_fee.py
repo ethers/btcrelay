@@ -409,9 +409,11 @@ class TestFee(object):
 #     return(0)
 #
     def testSendException(self):
+        tester.gas_limit = 200000000  # can't be too high since pytester will error with BlockGasLimitReached target:1000000000
         feePaid = 13
-        res = self.c.attackFeePaid(0, 0, feePaid, feePaid, 0, value=feePaid)
-        assert res == 1
+        res = self.c.attackFeePaid(1, 0, feePaid, feePaid, 0, value=feePaid, profiling=True)
+        print('GAS: '+str(res['gas']))
+        assert res['output'] == 1
 
     # based on https://github.com/ethers/btcrelay/blob/4fca910ca4d5d95c0a6b6d1a8c75b2d5a942e113/test/test_tokens.py#L361
     def checkRelay(self, txStr, txIndex, btcAddr, hh, keyVerifier, addrVerifier, addrFeeRecipient):

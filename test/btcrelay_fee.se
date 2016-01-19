@@ -33,7 +33,7 @@ def attackFeePaid(depth, blockHash, amountWei, msgValue, recursionResult):
     #     return(20)
     #
 
-    if depth == 50:
+    if depth == 1024:
         if self.feePaid(blockHash, amountWei, value=msgValue) == 0:
             return(998)
         else:
