@@ -399,21 +399,18 @@ class TestFee(object):
         assert self.s.block.get_balance(tester.a2) == balNextRec
         assert self.s.block.get_balance(tester.a1) == balRecipient
 
-# def feePaid(txBlockHash, amountWei):
-#     if msg.value >= amountWei:
-#         if msg.value > 0:
-#             feeRecipient = m_getFeeRecipient(txBlockHash)
-#             return(send(feeRecipient, msg.value))
-#             log(type=EthPayment, feeRecipient, msg.value)
-#         return(1)
-#     return(0)
-#
+
     def testSendException(self):
         tester.gas_limit = 200000000  # can't be too high since pytester will error with BlockGasLimitReached target:1000000000
-        feePaid = 13
-        res = self.c.attackFeePaid(1, 0, feePaid, 0, value=feePaid, profiling=True)
+        feePaid = 1027
+        res = self.c.attackFeePaid(1, 1024, 0, feePaid, 0, value=feePaid, profiling=True)
         print('GAS: '+str(res['gas']))
-        assert res['output'] == 1
+        assert res['output'] == -1
+
+        res = self.c.attackFeePaid(1, 1023, 0, feePaid, 0, value=feePaid, profiling=True)
+        print('GAS: '+str(res['gas']))
+        assert res['output'] == 0
+
 
     # based on https://github.com/ethers/btcrelay/blob/4fca910ca4d5d95c0a6b6d1a8c75b2d5a942e113/test/test_tokens.py#L361
     def checkRelay(self, txStr, txIndex, btcAddr, hh, keyVerifier, addrVerifier, addrFeeRecipient):
