@@ -26,7 +26,7 @@ def bulkStoreHeaderWithFee(headersBytes:str, count, feeWei):
     return(res)
 
 
-def attackFeePaid(depth, blockHash, amountWei, msgValue, recursionResult):
+def attackFeePaid(depth, blockHash, amountWei, recursionResult):
     # if self.feePaid(blockHash, amountWei, value=msgValue) == 0:
     #     return(998)
     # else:
@@ -34,13 +34,13 @@ def attackFeePaid(depth, blockHash, amountWei, msgValue, recursionResult):
     #
 
     if depth == 1024:
-        if self.feePaid(blockHash, amountWei, value=msgValue) == 0:
+        if self.feePaid(blockHash, amountWei, value=msg.value) == 0:
             return(998)
         else:
             return(0)
     else:
         depth += 1
-        return(self.attackFeePaid(depth,blockHash, amountWei, msgValue, recursionResult, value=msgValue) + recursionResult)
+        return(self.attackFeePaid(depth,blockHash, amountWei, recursionResult, value=msg.value) + recursionResult)
 
 
 # testing overrides should be before the contract being tested

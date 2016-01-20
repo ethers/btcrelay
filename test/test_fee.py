@@ -411,7 +411,7 @@ class TestFee(object):
     def testSendException(self):
         tester.gas_limit = 200000000  # can't be too high since pytester will error with BlockGasLimitReached target:1000000000
         feePaid = 13
-        res = self.c.attackFeePaid(1, 0, feePaid, feePaid, 0, value=feePaid, profiling=True)
+        res = self.c.attackFeePaid(1, 0, feePaid, 0, value=feePaid, profiling=True)
         print('GAS: '+str(res['gas']))
         assert res['output'] == 1
 
