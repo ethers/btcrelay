@@ -30,7 +30,7 @@ def bulkStoreHeaderWithFee(headersBytes:str, count, feeWei):
 def attackFeePaid(depth, maxDepth, blockHash, amountWei, recursionResult):
     if depth == maxDepth:
         if self.feePaid(blockHash, amountWei, value=msg.value) == 0:
-            return(-1)
+            invalid()
         else:
             return(0)
     else:
