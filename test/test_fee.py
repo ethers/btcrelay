@@ -400,7 +400,13 @@ class TestFee(object):
         assert self.s.block.get_balance(tester.a1) == balRecipient
 
 
-    def testSendException(self):
+    # test for the 1024 call stack depth limit attack, more accurately
+    # 1024 nesting/recursion limit of CALL, CALLCODE, CREATE opcodes
+    # Fortunately, send() is only used once ever by BTC Relay.
+    # References:
+    # https://github.com/LeastAuthority/ethereum-analyses/blob/master/GasEcon.md#callstack-depth-limit-errors
+    # https://github.com/ethereum/wiki/wiki/Subtleties#exceptional-conditions
+    def testSendRecursionLimit(self):
         tester.gas_limit = 200000000  # can't be too high since pytester will error with BlockGasLimitReached target:1000000000
         feePaid = 1027
         with pytest.raises(tester.TransactionFailed):
